@@ -1,0 +1,50 @@
+.joinOuterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    background-color: #1A1A1D;
+}
+
+.joinInnerContainer {
+    width: 20%;
+}
+
+.heading {
+    color: white;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+    font-size: 2.5em;
+
+}
+
+.joinInput {
+    border-radius: 0;
+    width: 100%;
+    padding: 15px, 20px;
+    margin-bottom: 15px;
+    outline: 0;
+    border: 0;
+}
+
+.button {
+    margin-top: 20px;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: #2979FF;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: 0;
+    width: 100%;
+    cursor: pointer;
+
+}
+
+button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+
+}
