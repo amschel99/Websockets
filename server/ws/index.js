@@ -30,7 +30,13 @@ const shortName = uniqueNamesGenerator({
   client['name']=shortName
    clients.push(client)
 
-  // client.send(JSON.stringify({sender:"Admin",content:clients}))
+  /*const clientNames= clients.map((client)=>{
+return (({ name }) => ({ name }))(client);
+   })*/
+
+
+
+   //client.send(JSON.stringify({sender:"Admin",content:clientNames}))
 
   
 
@@ -42,7 +48,7 @@ const shortName = uniqueNamesGenerator({
             client.send(JSON.stringify({sender:"ADMIN", content:`welcome, from now on you'll be called ${shortName} `}))
 
  const users=clients.filter((client)=>client.id!==client_id)
- users.forEach((user)=>user.send(`${shortName} has joined the chat`))
+ users.forEach((user)=>user.send(JSON.stringify({sender:"ADMIN",content:`${shortName} joined the chat `})))
 break;
          }
 
