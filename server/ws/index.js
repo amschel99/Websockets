@@ -30,6 +30,8 @@ const shortName = uniqueNamesGenerator({
   client['name']=shortName
    clients.push(client)
 
+  // client.send(JSON.stringify({sender:"Admin",content:clients}))
+
   
 
 
@@ -64,7 +66,16 @@ break;
   
 
    client.on("close", ()=>{
-      console.log("a client has disconnected")
+
+      clients.map((client,i)=>{
+         if(client.id===client_id){
+            console.log(client.name)
+            return clients.slice(i,1)
+         }
+      })
+      const users=clients.filter((client)=>client.id!==client_id)
+ users.forEach((user)=>user.send(JSON.stringify({sender:"ADMIN",content:`${shortName} left the chat `})))
+   
    })
 
 })
