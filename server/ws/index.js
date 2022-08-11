@@ -11,9 +11,13 @@ const path= require("path")
 
 //const server=app.listen(5000)
 
+
 const wss=new ws.Server({port:8080},()=>{
+
    console.log(`server is running `)
 })
+
+
 
 
 const clients=[]
@@ -30,13 +34,15 @@ const shortName = uniqueNamesGenerator({
   client['name']=shortName
    clients.push(client)
 
-  /*const clientNames= clients.map((client)=>{
+  const clientNames= clients.map((client)=>{
 return (({ name }) => ({ name }))(client);
-   })*/
+   })
+
+  // client.emit("users","admin",clientNames)
+client.send(JSON.stringify({event:"users",sender:"ADMIN", content:clientNames}))
 
 
 
-   //client.send(JSON.stringify({sender:"Admin",content:clientNames}))
 
   
 
@@ -45,18 +51,18 @@ return (({ name }) => ({ name }))(client);
       const{event,data}=JSON.parse(message)
       switch(event){
          case "join":{
-            client.send(JSON.stringify({sender:"ADMIN", content:`welcome, from now on you'll be called ${shortName} `}))
+            client.send(JSON.stringify({event:"message",sender:"ADMIN", content:`welcome, from now on you'll be called ${shortName} `}))
 
  const users=clients.filter((client)=>client.id!==client_id)
- users.forEach((user)=>user.send(JSON.stringify({sender:"ADMIN",content:`${shortName} joined the chat `})))
+ users.forEach((user)=>user.send(JSON.stringify({event:"message",sender:"ADMIN",content:`${shortName} joined the chat `})))
 break;
          }
 
           case "send_message":{
          
-client.send(JSON.stringify({sender:"you", content:data}))
+client.send(JSON.stringify({event:"message",sender:"you", content:data}))
  const users=clients.filter((client)=>client.id!==client_id)
- users.forEach((user)=>user.send(JSON.stringify({sender:shortName,content:data})))
+ users.forEach((user)=>user.send(JSON.stringify({event:"message",sender:shortName,content:data})))
 break;
          }
 
@@ -80,7 +86,7 @@ break;
          }
       })
       const users=clients.filter((client)=>client.id!==client_id)
- users.forEach((user)=>user.send(JSON.stringify({sender:"ADMIN",content:`${shortName} left the chat `})))
+ users.forEach((user)=>user.send(JSON.stringify({event:"message",sender:"ADMIN",content:`${shortName} left the chat `})))
    
    })
 

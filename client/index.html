@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="assets/css/Dark-NavBar-2.css">
     <link rel="stylesheet" href="assets/css/Dark-NavBar.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="./styles.css">
+
 </head>
 
 
@@ -30,12 +32,17 @@
                 </div>
             </div>
         </nav>
+        <div class="users">users online</div>
     </div>
-    <div class="row" style="height: 50vh; width: 90vw; margin-left: 10px; margin-top: 10px;">
+    <div class="row" style="height: 50vh; width: 60vw; margin-left: 10px; margin-top: 10px; display: flex;">
+      
         <div id="innerContainer" class="col text-start d-flex flex-column-reverse" style="background: var(--bs-gray-500);width: 100vw;">
+   
             <div style="width: 100vw;"></div>
         </div>
+               
     </div>
+    
     <div class="row ms-sm-auto" style="margin-top: 10px;">
         <div class="col d-flex justify-content-md-start align-items-md-center"><textarea id="message" class="border rounded-0 border-2 border-secondary shadow-lg visible" data-bs-toggle="tooltip" data-bss-tooltip="" rows="5" cols="50" placeholder="Enter your message" name="message" autofocus="" autocomplete="on" spellcheck="true" wrap="soft" title="Enter your message here" style="background: var(--bs-body-bg);color: var(--bs-gray-900);padding: 20px;padding-right: 10px;border: 3px solid var(--bs-pink);"></textarea><button  id="send" class="btn btn-primary" type="button" style="text-align: center;height: 100%;width: 40%;padding-right: 20px;font-size: 20PX;font-weight: bold;margin-left: 3PX;margin-right: 5px;">SEND</button></div>
     </div>

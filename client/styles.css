@@ -48,3 +48,7 @@ button:disabled {
     cursor: not-allowed;
 
 }
+.users{
+    background-color: white;
+    height: auto;
+}

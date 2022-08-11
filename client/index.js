@@ -1,7 +1,7 @@
 const url= "ws://localhost:8080"
 
 
-
+let usersOnline;
 
 WebSocket.prototype.emit=function (event,data){
  this.send(JSON.stringify({event,data}))
@@ -31,8 +31,21 @@ ws.onopen= (e)=>{
 
 ws.onmessage= (message)=>{
     const{data}=message
-const{sender,content}=JSON.parse(data)
+const{sender,content,event}=JSON.parse(data)
+switch(event){
+    case "message":{
    generateMessageEntry(content,sender)
+   break;
+    }
+    case "users":{
+        usersOnline=content
+        break;
+    }
+    default:{
+        return null;
+    }
+}
+
   
 }
 const sendMessage=()=>{
