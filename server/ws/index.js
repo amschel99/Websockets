@@ -82,7 +82,7 @@ break;
          
 
  const users=clients.filter((client)=>client.id!==client_id)
- users.forEach((user)=>user.send(JSON.stringify({event:"typing",sender:"Admin",content:`${data} is typing`})))
+ users.forEach((user)=>user.send(JSON.stringify({event:"typing",sender:"Admin",content:`${shortName} is typing`})))
 break;
          }
          case "stoptyping":{
