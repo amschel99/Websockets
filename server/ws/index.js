@@ -78,6 +78,20 @@ client.send(JSON.stringify({event:"message",sender:"you", content:data}))
  users.forEach((user)=>user.send(JSON.stringify({event:"message",sender:shortName,content:data})))
 break;
          }
+          case "typing":{
+         
+
+ const users=clients.filter((client)=>client.id!==client_id)
+ users.forEach((user)=>user.send(JSON.stringify({event:"typing",sender:"Admin",content:`${data} is typing`})))
+break;
+         }
+         case "stoptyping":{
+         
+
+ const users=clients.filter((client)=>client.id!==client_id)
+ users.forEach((user)=>user.send(JSON.stringify({event:"stoptyping",sender:"Admin",content:`${data} is typing`})))
+break;
+         }
 
          default:{
             client.send("something's wrong")

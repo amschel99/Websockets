@@ -124,6 +124,12 @@ outline: 0;
 .author{
     display: flex;
 }
+#typing{
+    width: 100vw;
+
+    height: 50px;
+    overflow-y: scroll;
+}
 
 
 
