@@ -6,13 +6,17 @@ const { uniqueNamesGenerator, adjectives, colors, animals } = require('unique-na
 
 const app= express()
 const path= require("path")
-//console.log(path.resolve(__dirname,"..../client"))
-//app.use("/", express.static(path.resolve(__dirname,'.../client')))
+//console.log(path.join(__dirname,'./index.html'))
 
-//const server=app.listen(5000)
+app.use('/', express.static(path.resolve(__dirname,'../', "../client")))
 
 
-const wss=new ws.Server({port:8080},()=>{
+const server=app.listen(8080,()=>{
+   console.log("running the server")
+})
+
+
+const wss=new ws.Server({noServer:true},()=>{
 
    console.log(`server is running `)
 })
@@ -115,13 +119,13 @@ break;
 
 
 
-/*server.on('upgrade',async function upgrade(request,socket,head){
+server.on('upgrade',async function upgrade(request,socket,head){
 
-
+//you can handle authentication here
    //return socket.end('HTTP/1.1 401 Unauthorized\r\n','ascii')
 
 wss.handleUpgrade(request,socket,head,function done(ws){
    wss.emit("connection",ws,request)
 
 })
-})*/
+})
