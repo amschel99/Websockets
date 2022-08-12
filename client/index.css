@@ -1,0 +1,126 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+.nav{
+    height: 10%;
+    width: 100vw;
+    background-color: rgba(70, 64,31, 0.1);
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    font-family: cursive;
+    font-style: italic;
+    color: gainsboro;
+    flex-wrap: wrap;
+
+}
+.main{
+    
+    display: flex;
+    height: 80%;
+    width: 100%;
+   
+}
+.info{
+    height: 100%;
+    width: 20%;
+    background-color:rgba(170, 164, 131, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    color: whitesmoke;
+    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    overflow-y: scroll;
+    overscroll-behavior-y:calc();
+     
+    scrollbar-base-color: black;
+    scroll-behavior:unset;
+}
+.online{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+font-weight: bolder;
+margin: 5px;
+}
+.user{
+    color: blueviolet;
+    font-family: cursive;
+    text-decoration: none;
+    font-size: small;
+    margin-top: 10px;
+}
+.chat{
+    width: 79%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: blueviolet;
+    font-family: cursive;
+    font-style: italic;
+    font-size: small;
+    
+    
+
+
+}
+#innerContainer div{
+  
+    display: flex;
+    margin: 10px;
+    
+}
+#innerContainer  div p{
+    color: cadetblue;
+
+}
+#innerContainer div h6{
+    color: blueviolet;
+    font-size: xx-small;
+    margin: 2px;
+}
+.messages{
+    width: 100%;
+    height: 80%;
+    border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.controls{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+background-color: white;
+
+
+}
+.btn{
+    background-color: dodgerblue;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+   
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+.text{
+    width: 70%;
+
+border: 0;
+outline: 0;
+}
+.author{
+    display: flex;
+}

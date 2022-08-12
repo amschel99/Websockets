@@ -39,22 +39,31 @@ return (({ name }) => ({ name }))(client);
    })
 
   // client.emit("users","admin",clientNames)
-client.send(JSON.stringify({event:"users",sender:"ADMIN", content:clientNames}))
 
 
 
 
-  
+
 
 
    client.on("message", function(message){
       const{event,data}=JSON.parse(message)
       switch(event){
          case "join":{
+
+            //here is where we should handle the logic of online users
+            console.log(clients.length)
             client.send(JSON.stringify({event:"message",sender:"ADMIN", content:`welcome, from now on you'll be called ${shortName} `}))
 
+  client.send(JSON.stringify({event:"users",sender:"ADMIN", content:clientNames}))
  const users=clients.filter((client)=>client.id!==client_id)
- users.forEach((user)=>user.send(JSON.stringify({event:"message",sender:"ADMIN",content:`${shortName} joined the chat `})))
+ users.forEach((user)=>{user.send(JSON.stringify({event:"message",sender:"ADMIN",content:`${shortName} joined the chat `}))
+   user.send(JSON.stringify({event:"users",sender:"ADMIN", content:clientNames}))
+   
+  user.send(JSON.stringify({event:"users",sender:"ADMIN", content:clientNames}))
+         }
+ )
+         
 break;
          }
 
@@ -78,15 +87,27 @@ break;
   
 
    client.on("close", ()=>{
+             //here is where we should handle the logic of online users
 
       clients.map((client,i)=>{
          if(client.id===client_id){
-            console.log(client.name)
-            return clients.slice(i,1)
+      
+          clients.splice(i,1)
+          console.log(clientNames)
+          
          }
+       
       })
+
       const users=clients.filter((client)=>client.id!==client_id)
- users.forEach((user)=>user.send(JSON.stringify({event:"message",sender:"ADMIN",content:`${shortName} left the chat `})))
+ users.forEach((user)=>{
+    
+    user.send(JSON.stringify({event:"users",sender:"ADMIN", content:clientNames}))
+     user.send(JSON.stringify({event:"users",sender:"ADMIN", content:clientNames}))
+ user.send(JSON.stringify({event:"message",sender:"ADMIN",content:`${shortName} left the chat `}))
+
+   })
+
    
    })
 

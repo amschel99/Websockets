@@ -8,15 +8,15 @@ WebSocket.prototype.emit=function (event,data){
 }
 
 const ws= new WebSocket(url)
-const signIn= document.getElementById("sign-in")
-const name= document.getElementById("name")
-const room= document.getElementById("room")
+
 
 
 
 const messagesContainer=document.getElementById("innerContainer")
 const button= document.getElementById("send")
 const message=document.getElementById("message")
+const users=document.getElementById("info")
+const list=document.getElementById("list")
 button.disabled=true
 
 // below is our own defined emit function by extending the class
@@ -39,6 +39,16 @@ switch(event){
     }
     case "users":{
         usersOnline=content
+        list.innerHTML=""
+        usersOnline.forEach((user)=>{
+            //list.innerHTML=""
+            const userParagraph=document.createElement("p")
+            const present=`<p>${user.name}</p>`
+           
+            
+            userParagraph.textContent=user.name
+            list.appendChild(userParagraph)
+        })
         break;
     }
     default:{
@@ -54,9 +64,18 @@ const sendMessage=()=>{
 ws.emit("send_message",messageValue )
 }
 const generateMessageEntry=(message,type)=>{
+    const div=document.createElement("div")
+    
    const pmessage=document.createElement("p")
-pmessage.textContent=`${type}:${message}`
-messagesContainer.appendChild(pmessage) 
+   const author=document.createElement("h6")
+  
+pmessage.textContent=`${message} `
+author.textContent=` ${type}`
+ div.appendChild(pmessage)
+   div.appendChild(author)
+ 
+messagesContainer.appendChild(div) 
+
 }
 
 button.addEventListener("click",sendMessage,false)
