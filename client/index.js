@@ -1,4 +1,4 @@
-const url= "ws://localhost:8080"
+const url=  location.origin.replace(/^http/, 'ws')
 
 
 let usersOnline;

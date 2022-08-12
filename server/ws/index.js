@@ -6,12 +6,13 @@ const { uniqueNamesGenerator, adjectives, colors, animals } = require('unique-na
 
 const app= express()
 const path= require("path")
+const PORT= process.env.PORT || 8080
 //console.log(path.join(__dirname,'./index.html'))
 
 app.use('/', express.static(path.resolve(__dirname,'../', "../client")))
 
 
-const server=app.listen(8080,()=>{
+const server=app.listen(PORT,()=>{
    console.log("running the server")
 })
 
