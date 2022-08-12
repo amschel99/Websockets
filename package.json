@@ -1,23 +1,22 @@
 {
-  "name": "chatly",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./server/socket/index.js "
+    "start": "node ./server/socket/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/amschel99/Websockets.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/amschel99/Websockets/issues"
-  },
-  "homepage": "https://github.com/amschel99/Websockets#readme",
   "dependencies": {
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3",
+    "socket.io": "^4.5.1",
+    "unique-names-generator": "^4.7.1",
+    "uuid": "^8.3.2",
     "ws": "^8.8.1"
   }
 }
