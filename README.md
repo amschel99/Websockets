@@ -83,7 +83,14 @@ wss.handleUpgrade(request,socket,head,function done(ws){
 })
 ```
 Place this code at the bottom of your file.  
-
+Basically The HTTP/1.1 protocol provides a special mechanism that can be used to upgrade an already established connection to a different protocol like WebSocket protocol, using the Upgrade header field. So the http server listens for the ```upgrade``` event and runs the call back function. You can use an if statement to authenticate users e.g
+```
+if(not_authenticated){
+return socket.end('HTTP/1.1 401 Unauthorized\r\n','ascii')
+}
+```
+If a user is not authenticated, the code below never runs and hence the WebSocket connection never happens.
+ 
 
 
 
