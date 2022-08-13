@@ -75,6 +75,7 @@ message.addEventListener("keypress", ()=>{
     ws.emit("typing",userTyping)
 })
 
+
 message.addEventListener("keyup", ()=>{
 
     ws.emit("stoptyping",userTyping)
@@ -113,4 +114,13 @@ typingContainer.appendChild(div)
 }
 
 button.addEventListener("click",sendMessage,false)
+message.addEventListener("keypress",(e)=>{
+    if(e.key==="Enter"){
+        sendMessage()
+        return
+    }
+    return
+
+
+})
 
