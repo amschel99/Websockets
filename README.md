@@ -42,6 +42,49 @@ The client is built with Html/css and Javascript
 #### ```index.css``` Just some basic styles for the html at https://github.com/amschel99/Websockets/blob/main/client/index.css
 
 
+#### ```index.js```
+
+```
+const url=  location.origin.replace(/^http/, 'ws')
+const ws= new WebSocket(url)
+```
+Most browsers support the WebSocket Protocol.
+WebSocket is a class and hence we call its constructor and pass the url.
+For example in development, url will be ```ws://localhost:8080```
+
+### Back to the Server
+
+```app.use('/', express.static(path.resolve(__dirname,'../', "../client")))
+
+const server=app.listen(PORT,()=>{
+   console.log("running the server")
+})
+
+
+const wss=new ws.Server({noServer:true},()=>{
+
+   console.log(`server is running `)
+})
+```
+The code above  creates an instance of a websocket server which will run on port 8080 locally. 
+It will serve the static client folder and also run the websocket server on the same port as we will see below.
+
+
+```server.on('upgrade',async function upgrade(request,socket,head){
+
+//you can handle authentication here
+   //return socket.end('HTTP/1.1 401 Unauthorized\r\n','ascii')
+
+wss.handleUpgrade(request,socket,head,function done(ws){
+   wss.emit("connection",ws,request)
+
+})
+})
+```
+Place this code at the bottom of your file.  
+
+
+
 
 
 
