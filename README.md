@@ -37,7 +37,9 @@ We import the needed packages as shown above.
 
 The client is built with Html/css and Javascript
 
-#### ```index.html``` 
+#### ```index.html``` You can find the html code at https://github.com/amschel99/Websockets/blob/main/client/index.html
+
+#### ```index.css``` Just some basic styles for the html at https://github.com/amschel99/Websockets/blob/main/client/index.css
 
 
 
