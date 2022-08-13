@@ -175,11 +175,6 @@ break;
       }
 
   })
-
-
-
-  
-
    client.on("close", ()=>{
              //here is where we should handle the logic of online users
 
@@ -215,6 +210,8 @@ The ```wss``` (websocketserver) listens for an event called ```connection```.
 ```wss.on("connection", (client)=>{})```
 
 The callback function contains information about the client who connected.
+When a client is connected, there are given a unique id and unique name and there are added to the array of connected clients.
+
 
 ```
 client.on("message", function(message){
@@ -235,8 +232,210 @@ client.on("message", function(message){
          }
  )
          
-break;
-         }```
+break; } 
+````
+
+when the server receives a message from a particular connected client, it  parses the message received and extracts ```event and data```
+It checks what event it receives and for each event, it either sends a message back to the client or broadcasts the message to all the other clients through simple array methods like ``forEach```
+
+
+```
+
+   client.on("close", ()=>{
+             //here is where we should handle the logic of online users
+
+      clients.map((client,i)=>{
+         if(client.id===client_id){
+      
+          clients.splice(i,1)
+          console.log(clientNames)
+          
+         }
+       
+      })
+
+      const users=clients.filter((client)=>client.id!==client_id)
+ users.forEach((user)=>{
+    
+    user.send(JSON.stringify({event:"users",sender:"ADMIN", content:clientNames}))
+     user.send(JSON.stringify({event:"users",sender:"ADMIN", content:clientNames}))
+ user.send(JSON.stringify({event:"message",sender:"ADMIN",content:`${shortName} left the chat `}))
+
+   })
+
+   
+   })
+
+})
+```
+When a clients disconnects, there are removed from the array of clients and the server broadcasts the message that the the client has disconnected to all  the other connected clients.
+
+
+### THE CLIENT
+
+```
+WebSocket.prototype.emit=function (event,data){
+ this.send(JSON.stringify({event,data}))
+}
+```
+We add an emit prototype to the class that will be used to send messages.
+
+
+
+
+```
+ws.onopen= (e)=>{
+    button.disabled=false
+
+    console.log(`connection open ${JSON.stringify(e)}`)
+    ws.emit("join")
+}
+```
+When the connection is open, the clients sends a message to the server. The message contains the event which is join. 
+The server will listen for that event and notify the client that they have joined and also broadcast to all other clients that a new client has joined.
+(we wrote the logic for that)
+
+```
+ws.onmessage= (message)=>{
+    const{data}=message
+const{sender,content,event}=JSON.parse(data)
+switch(event){
+    case "message":{
+   generateMessageEntry(content,sender)
+   break;
+    }
+    case "users":{
+        usersOnline=content
+        list.innerHTML=""
+        usersOnline.forEach((user)=>{
+            //list.innerHTML=""
+            const userParagraph=document.createElement("p")
+            const present=`<p>${user.name}</p>`
+           
+            userTyping=user.name
+            userParagraph.textContent=user.name
+            list.appendChild(userParagraph)
+        })
+        break;
+    }
+    case "typing":{
+   generateTypingEntry(content,sender)
+   break;
+    }
+     case "stoptyping":{
+typingContainer.innerHTML=""
+   break;
+    }
+    default:{
+        return null;
+    }
+}
+
+  
+}
+```
+When the client receives a message from the server, it checks the event and does renders the message depending on the event received from the server.
+
+```
+message.addEventListener("keypress", ()=>{
+
+    ws.emit("typing",userTyping)
+})
+
+
+message.addEventListener("keyup", ()=>{
+
+    ws.emit("stoptyping",userTyping)
+})
+const sendMessage=()=>{
+    const messageValue= message.value
+    
+ws.emit("send_message",messageValue )
+}
+const generateMessageEntry=(message,type)=>{
+    const div=document.createElement("div")
+    
+   const pmessage=document.createElement("p")
+   const author=document.createElement("h6")
+  
+pmessage.textContent=`${message} `
+author.textContent=` ${type}`
+ div.appendChild(pmessage)
+   div.appendChild(author)
+ 
+messagesContainer.appendChild(div) 
+
+}
+const generateTypingEntry=(message,type)=>{
+    const div=document.createElement("div")
+    
+   const pmessage=document.createElement("p")
+   const author=document.createElement("h6")
+  
+pmessage.textContent=`${message} `
+author.textContent=` ${type}`
+ div.appendChild(pmessage)
+   div.appendChild(author)
+typingContainer.appendChild(div) 
+
+}
+
+button.addEventListener("click",sendMessage,false)
+message.addEventListener("keypress",(e)=>{
+    if(e.key==="Enter"){
+        sendMessage()
+        return
+    }
+    return
+
+
+})
+```
+Above is the rest of the code which is pretty intuitive. The client emits different messages based on events like keypress e.tc
+
+
+The full source code for the client side login is at  https://github.com/amschel99/Websockets/blob/main/client/index.css
+
+
+I have also added a scroll.js file for scroll-to-bottom behaviour https://github.com/amschel99/Websockets/blob/main/client/scroll.js
+
+
+### DEPLOYING TO HEROKU
+
+#### Make sure the package.json is in the root directory.
+
+Add the script below.
+
+   ```"start": "node ./server/index.js"```
+   
+   git init.
+   
+   
+   git remote add origin 'github-url'.
+   
+   
+   
+   git add .
+   
+   
+   
+   git commit -m "deploying".
+   
+   
+   
+   heroku create -a app_name.
+   
+   
+   
+   git push heroku main.
+   
+
+
+
+
+
+
+   
          
        
          
