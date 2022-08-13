@@ -70,7 +70,8 @@ The code above  creates an instance of a websocket server which will run on port
 It will serve the static client folder and also run the websocket server on the same port as we will see below.
 
 
-```server.on('upgrade',async function upgrade(request,socket,head){
+```
+server.on('upgrade',async function upgrade(request,socket,head){
 
 //you can handle authentication here
    //return socket.end('HTTP/1.1 401 Unauthorized\r\n','ascii')
