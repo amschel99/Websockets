@@ -25,13 +25,13 @@
 .main{
     
     display: flex;
-    height: 85%;
+    height: 70%;
     width: 100%;
    
 }
 .info{
     height: 100%;
-    width: 30%;
+    width: 35%;
     background-color:rgba(170, 164, 131, 0.1);
     display: flex;
     flex-direction: column;
@@ -60,7 +60,7 @@ margin: 5px;
     margin-top: 10px;
 }
 .chat{
-    width: 69%;
+    width: 64%;
     height: 100%;
     display: flex;
     flex-direction: column;
