@@ -27,7 +27,11 @@ We import the needed packages as shown above.
 
 #### ```uuid``` will generate a unique id for each client that joins the chat.
 
-#### ```unique-names-generator``` will generate a unique name for any client that joins the chat
+#### ```unique-names-generator``` will generate a unique name for any client that joins the chat.
+
+#### ```const app= express()``` app is an instance of a http server
+#### ```const path= require("path")``` importing the built in path module from node js
+#### ```const PORT= process.env.PORT || 8080``` locally, the app will run on port 8080 but after deployment, it will run on the enviroment's port number
 
 
 
