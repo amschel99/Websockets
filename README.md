@@ -33,6 +33,12 @@ We import the needed packages as shown above.
 #### ```const path= require("path")``` importing the built in path module from node js
 #### ```const PORT= process.env.PORT || 8080``` locally, the app will run on port 8080 but after deployment, it will run on the enviroment's port number
 
+## The Client
+
+The client is built with Html/css and Javascript
+
+#### ```index.html``` 
+
 
 
 
